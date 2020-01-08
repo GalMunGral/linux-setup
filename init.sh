@@ -14,19 +14,19 @@ git clone https://github.com/scrooloose/nerdtree.git $DEST
 sudo curl -fsSL https://raw.githubusercontent.com/lifepillar/vim-solarized8/master/colors/solarized8_flat.vim \
   -o /usr/share/nvim/runtime/colors/solarized8_flat.vim
 
-# Install browsers
-(
-  cd ../../browser/
-  (cd google-chrome && sudo dpkg -i google-chrome-unstable_current_amd64.deb)
-  (cd tor-browser && tar xvf tor*.tar.xz -C ~ && cd ~/tor* && ./start-tor-browser.desktop --register-app)
-)
-
 # Set up development environment
 (
   cd ../../dev/
   (cd node && ./install-13*.sh)
   (cd sublime && ./install.sh)
   (cd vscode && sudo dpkg -i code-insiders*.deb)
+)
+# Install browsers
+(
+  cd ../../browser/
+  (cd google-chrome && sudo dpkg -i google-chrome-unstable_current_amd64.deb \
+    && sudo apt --fix-broken install && sudo apt autoremove)
+  (cd tor-browser && tar xvf tor*.tar.xz -C ~ && cd ~/tor* && ./start-tor-browser.desktop --register-app)
 )
 
 # Install linux-surface
